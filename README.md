@@ -1,18 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Studio Sammii
+
+A clean, modern freelance website built with Next.js 15, TypeScript, and Tailwind CSS.
+
+## Features
+
+- **Modern Design**: Clean, minimal aesthetic with focus on typography and whitespace
+- **Fully Responsive**: Mobile-first design that works beautifully on all devices
+- **Performance Optimized**: Built with Next.js 15 and optimized for speed
+- **SEO Ready**: Proper meta tags, Open Graph, and structured data
+- **Contact Form**: Working contact form with validation and API endpoint
+- **Accessible**: WCAG compliant with proper focus states and semantic HTML
+
+## Pages
+
+- **Home**: Hero section, services overview, selected work, and call-to-action
+- **Services**: Detailed service offerings with pricing guidance
+- **Work**: Portfolio showcase with project details
+- **About**: Personal story, principles, and current status
+- **Contact**: Contact form and alternative contact methods
+- **Privacy**: Privacy policy page
+
+## Tech Stack
+
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **Deployment**: Ready for Vercel, Netlify, or any static hosting
 
 ## Getting Started
 
-First, run the development server:
-
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn add
 ```
+
+2. Run the development server:
+```bash
+yarn run dev
+```
+
+3. Open [http://localhost:3000](http://localhost:3000) to see the site
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
