@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import Button from "@/components/Button";
@@ -12,7 +11,7 @@ export default function NotFound() {
             Page not found
           </h1>
           <p className="text-lg text-neutral-600 mb-8">
-            Sorry, the page you're looking for doesn't exist. 
+            Sorry, the page you&apos;re looking for doesn&apos;t exist. 
             It might have been moved or deleted.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

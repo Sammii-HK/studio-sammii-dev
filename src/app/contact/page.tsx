@@ -64,7 +64,7 @@ export default function ContactPage() {
                 <h3 className="font-medium text-black mb-2">Before you reach out</h3>
                 <p className="text-sm text-neutral-600">
                   I work best with founders and teams who value craft, clarity, and honest collaboration. 
-                  If that sounds like you, I'd love to hear about your project.
+                  If that sounds like you, I&apos;d love to hear about your project.
                 </p>
               </div>
             </div>

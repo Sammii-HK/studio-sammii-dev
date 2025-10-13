@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     });
 
     return NextResponse.json(
-      { message: 'Thank you for your message! I\'ll get back to you within 24 hours.' },
+      { message: 'Thank you for your message! I&apos;ll get back to you within 24 hours.' },
       { status: 200 }
     );
   } catch (error) {
