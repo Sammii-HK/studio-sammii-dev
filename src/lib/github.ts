@@ -15,7 +15,21 @@ export type GitHubRepo = {
   topics: string[];
 };
 
-function generateDescriptionFromRepo(repo: any): string {
+interface GitHubRepoRaw {
+  name: string;
+  description: string | null;
+  language: string | null;
+  topics: string[];
+  private: boolean;
+  updated_at: string;
+  html_url: string;
+  full_name: string;
+  stargazers_count: number;
+  forks_count: number;
+  homepage: string | null;
+}
+
+function generateDescriptionFromRepo(repo: GitHubRepoRaw): string {
   // If there's a description, use it
   if (repo.description && repo.description.trim()) {
     return repo.description;
@@ -60,7 +74,7 @@ function generateDescriptionFromRepo(repo: any): string {
 export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
   try {
     // Fetch with pagination - get up to 100 repos per page
-    let allRepos: any[] = [];
+    let allRepos: GitHubRepoRaw[] = [];
     let page = 1;
     const perPage = 100;
     let hasMore = true;
@@ -98,7 +112,7 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
     const repos = allRepos;
 
     // Transform the data to match our structure
-    const formattedRepos: GitHubRepo[] = repos.map((repo: any) => ({
+    const formattedRepos: GitHubRepo[] = repos.map((repo: GitHubRepoRaw) => ({
       name: repo.name,
       fullName: repo.full_name,
       description: generateDescriptionFromRepo(repo),

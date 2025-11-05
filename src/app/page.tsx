@@ -87,7 +87,7 @@ export default async function Home() {
           <div className="mb-12">
             <h2 className="text-3xl font-semibold mb-4 dark:text-white">SAAS Products</h2>
             <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl">
-              Software-as-a-service products I've built and launched. Each product solves real problems with clean interfaces and thoughtful engineering.
+              Software-as-a-service products I&apos;ve built and launched. Each product solves real problems with clean interfaces and thoughtful engineering.
             </p>
           </div>
           
