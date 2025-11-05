@@ -138,6 +138,71 @@ export async function fetchGitHubRepos(): Promise<GitHubRepo[]> {
   }
 }
 
+async function fetchReadmeImage(repoName: string): Promise<string | null> {
+  try {
+    const readmeUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${repoName}/readme`;
+    const response = await fetch(readmeUrl, {
+      next: { revalidate: 3600 }, // Cache for 1 hour
+      headers: {
+        'Accept': 'application/vnd.github.v3+json',
+      },
+    });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const readme = await response.json();
+    
+    // Decode base64 content
+    const content = Buffer.from(readme.content, 'base64').toString('utf-8');
+    
+    // Extract first image URL from markdown
+    // Match ![alt](url) or ![alt text](url "title")
+    const imageRegex = /!\[.*?\]\((.*?)(?:\s+"[^"]*")?\)/;
+    const match = content.match(imageRegex);
+    
+    if (match && match[1]) {
+      let imageUrl = match[1];
+      
+      // Handle relative URLs - convert to raw GitHub URLs
+      if (imageUrl.startsWith('./') || !imageUrl.startsWith('http')) {
+        // Convert relative path to raw GitHub URL
+        const branch = readme.html_url.split('/').pop()?.replace('.md', '') || 'main';
+        const path = imageUrl.replace('./', '');
+        imageUrl = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repoName}/${branch}/${path}`;
+      }
+      
+      // Handle GitHub blob URLs - convert to raw
+      if (imageUrl.includes('github.com') && imageUrl.includes('/blob/')) {
+        imageUrl = imageUrl.replace('/blob/', '/').replace('github.com', 'raw.githubusercontent.com');
+      }
+      
+      return imageUrl;
+    }
+    
+    return null;
+  } catch (error) {
+    console.error(`Error fetching README for ${repoName}:`, error);
+    return null;
+  }
+}
+
+export async function fetchProjectImages(repoNames: string[]): Promise<Map<string, string>> {
+  const imageMap = new Map<string, string>();
+  
+  // Fetch images for all repos in parallel
+  const promises = repoNames.map(async (repoName) => {
+    const imageUrl = await fetchReadmeImage(repoName);
+    if (imageUrl) {
+      imageMap.set(repoName.toLowerCase(), imageUrl);
+    }
+  });
+  
+  await Promise.all(promises);
+  return imageMap;
+}
+
 export function formatUpdatedDate(dateString: string): string {
   const date = new Date(dateString);
   const now = new Date();

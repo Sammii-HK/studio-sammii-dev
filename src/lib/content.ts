@@ -66,25 +66,36 @@ export const siteContent = {
 
   projects: [
     {
-      title: "Project A",
-      goal: "Lift conversion for a new product launch with a focused design system.",
-      impact: "Improved sign-up flow. Faster build velocity.",
-      image: "/images/proj-1.jpg",
-      role: "Design, Front-end"
-    },
-    {
-      title: "Project B", 
-      goal: "Design and build a marketing site that matches the product's ambition.",
-      impact: "Higher time on page. Clearer story.",
-      image: "/images/proj-2.jpg",
-      role: "Design, Development"
-    },
-    {
       title: "Lunary",
-      goal: "Turn complex celestial data into a calm, legible interface.",
-      impact: "Clear UI language. Smooth performance.",
-      image: "/images/proj-3.jpg", 
-      role: "Product Design, Frontend"
+      goal: "Transform complex lunar and celestial data into an intuitive, beautiful diary interface.",
+      impact: "Your Lunar Diary - Makes celestial tracking accessible and personal. Clean design with thoughtful interactions.",
+      image: "/images/proj-3.jpg",
+      role: "Product Design, Frontend",
+      githubUrl: "https://github.com/Sammii-HK/lunary"
+    },
+    {
+      title: "Glint",
+      goal: "Create a polished, performant web experience with attention to detail and smooth interactions.",
+      impact: "Beautiful interface design. Fast, responsive user experience. Thoughtful micro-interactions.",
+      image: "/images/proj-1.jpg",
+      role: "Design, Front-end",
+      githubUrl: "https://github.com/Sammii-HK/glint"
+    },
+    {
+      title: "Scape²",
+      goal: "Build a modern e-commerce platform with a focus on design, performance, and user experience.",
+      impact: "Beautiful storefront. Smooth shopping experience. Fast load times and optimized performance.",
+      image: "/images/proj-2.jpg",
+      role: "Design, Development",
+      githubUrl: "https://github.com/Sammii-HK/scape-squared"
+    },
+    {
+      title: "Crystal Index",
+      goal: "Create a full-stack application to index and explore crystals with beautiful UI and thoughtful information architecture.",
+      impact: "Comprehensive crystal database. Beautiful visual design. Smooth user experience with GPT-4 integration.",
+      image: "/images/proj-2.jpg",
+      role: "Full-stack, Design",
+      githubUrl: "https://github.com/Sammii-HK/crystal-index"
     }
   ],
 

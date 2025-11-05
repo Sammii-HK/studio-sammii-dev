@@ -6,7 +6,7 @@ import ProjectCard from "@/components/ProjectCard";
 import SAASProductCard from "@/components/SAASProductCard";
 import Button from "@/components/Button";
 import { siteContent } from "@/lib/content";
-import { fetchGitHubRepos, formatUpdatedDate } from "@/lib/github";
+import { fetchGitHubRepos, formatUpdatedDate, fetchProjectImages } from "@/lib/github";
 
 export const metadata = {
   title: "Studio Sammii — Design engineer for products with clarity and soul",
@@ -17,6 +17,32 @@ export default async function Home() {
   const { intro, services, projects, trust, cta, saasProductNames } = siteContent;
   const allRepos = await fetchGitHubRepos();
   const saasRepos = allRepos.filter((repo) => saasProductNames.includes(repo.name));
+  
+  // Create a map of repo names to their homepage URLs for projects
+  const repoHomepages = new Map<string, string | null>();
+  allRepos.forEach((repo) => {
+    repoHomepages.set(repo.name.toLowerCase(), repo.homepage);
+  });
+  
+  // Get repo names from projects
+  const repoNames = projects
+    .map((project) => project.githubUrl?.split('/').pop() || '')
+    .filter((name) => name.length > 0);
+  
+  // Fetch README images for all projects
+  const projectImages = await fetchProjectImages(repoNames);
+  
+  // Enhance projects with homepage links and images from GitHub
+  const projectsWithHomepages = projects.map((project) => {
+    const repoName = project.githubUrl?.split('/').pop()?.toLowerCase() || '';
+    const homepage = repoHomepages.get(repoName) || null;
+    const imageUrl = projectImages.get(repoName) || project.image;
+    return {
+      ...project,
+      homepage,
+      image: imageUrl,
+    };
+  });
 
   return (
     <>
@@ -67,7 +93,7 @@ export default async function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
+            {projectsWithHomepages.map((project, index) => (
               <ProjectCard
                 key={index}
                 title={project.title}
@@ -75,6 +101,8 @@ export default async function Home() {
                 impact={project.impact}
                 image={project.image}
                 role={project.role}
+                githubUrl={project.githubUrl}
+                homepage={project.homepage}
               />
             ))}
           </div>
