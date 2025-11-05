@@ -114,5 +114,16 @@ export const siteContent = {
   cta: {
     heading: "Have a project in mind",
     button: "Start a conversation"
-  }
+  },
+
+  // SAAS product names - these will be filtered from GitHub repos
+  // Only include actual Software-as-a-Service products (web-based services)
+  saasProductNames: [
+    "reo-ai",
+    "ai-voiceover",
+    "iconify",
+    "iprep",
+    "notify-me",
+    "content-creator"
+  ]
 };

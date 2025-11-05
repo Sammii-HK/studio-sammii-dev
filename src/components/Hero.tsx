@@ -6,13 +6,13 @@ export default function Hero() {
   const { hero } = siteContent;
   
   return (
-    <section className="border-b border-neutral-100">
+    <section className="border-b border-neutral-100 dark:border-neutral-800">
       <Container>
         <div className="py-20 md:py-28">
-          <h1 className="text-4xl font-semibold tracking-tight md:text-6xl leading-tight">
+          <h1 className="text-4xl font-semibold tracking-tight md:text-6xl leading-tight dark:text-white">
             {hero.title}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg text-neutral-600 leading-relaxed">
+          <p className="mt-6 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
             {hero.subhead}
           </p>
           <div className="mt-8 flex flex-col sm:flex-row gap-4">

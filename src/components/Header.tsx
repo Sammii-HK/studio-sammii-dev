@@ -4,11 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import Container from "./Container";
 import Button from "./Button";
+import ThemeToggle from "./ThemeToggle";
 
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Work", href: "/work" },
+  { name: "SAAS", href: "/saas" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -17,10 +19,10 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-neutral-100">
+    <header className="sticky top-0 z-50 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md border-b border-neutral-100 dark:border-neutral-800">
       <Container>
         <div className="flex items-center justify-between py-4">
-          <Link href="/" className="text-xl font-semibold text-black">
+          <Link href="/" className="text-xl font-semibold text-black dark:text-white">
             Studio Sammii
           </Link>
           
@@ -29,7 +31,7 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-medium text-neutral-600 hover:text-black transition-colors"
+                className="text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
               >
                 {item.name}
               </Link>
@@ -37,13 +39,14 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <Button href="/contact" variant="primary" className="hidden sm:inline-flex">
               Work with me
             </Button>
             
             {/* Mobile menu button */}
             <button
-              className="md:hidden p-2 text-neutral-600 hover:text-black"
+              className="md:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -60,13 +63,13 @@ export default function Header() {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-neutral-100">
+          <div className="md:hidden py-4 border-t border-neutral-100 dark:border-neutral-800">
             <nav className="space-y-4">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block text-sm font-medium text-neutral-600 hover:text-black transition-colors"
+                  className="block text-sm font-medium text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}

@@ -10,8 +10,8 @@ type ProjectCardProps = {
 
 export default function ProjectCard({ title, goal, impact, image, role }: ProjectCardProps) {
   return (
-    <article className="overflow-hidden rounded-2xl border border-neutral-200 hover:border-neutral-300 transition-colors group">
-      <div className="relative h-56 bg-neutral-100">
+    <article className="overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors group bg-white dark:bg-neutral-900">
+      <div className="relative h-56 bg-neutral-100 dark:bg-neutral-800">
         <Image 
           src={image} 
           alt={title} 
@@ -21,17 +21,17 @@ export default function ProjectCard({ title, goal, impact, image, role }: Projec
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-lg font-medium text-black">{title}</h3>
+          <h3 className="text-lg font-medium text-black dark:text-white">{title}</h3>
           {role && (
-            <span className="text-xs text-neutral-500 bg-neutral-100 px-2 py-1 rounded">
+            <span className="text-xs text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
               {role}
             </span>
           )}
         </div>
-        <p className="text-sm text-neutral-600 mb-1">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">
           <span className="font-medium">Goal:</span> {goal}
         </p>
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
           <span className="font-medium">Impact:</span> {impact}
         </p>
       </div>
