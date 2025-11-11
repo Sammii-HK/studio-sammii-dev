@@ -6,11 +6,14 @@ import Container from "./Container";
 import Button from "./Button";
 import ThemeToggle from "./ThemeToggle";
 
+const ENABLE_TEMPLATES_STORE = process.env.NEXT_PUBLIC_ENABLE_TEMPLATES_STORE === 'true';
+
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Work", href: "/work" },
   { name: "SAAS", href: "/saas" },
+  ...(ENABLE_TEMPLATES_STORE ? [{ name: "Templates", href: "/templates" }] : []),
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];

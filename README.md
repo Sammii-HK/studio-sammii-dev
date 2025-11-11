@@ -34,12 +34,25 @@ A clean, modern freelance website built with Next.js 15, TypeScript, and Tailwin
 yarn add
 ```
 
-2. Run the development server:
+2. (Optional) Configure environment variables:
+Create a `.env.local` file in the root directory:
+```bash
+# Studio Store API Configuration
+# Base URL for the Studio Store API (defaults to https://framify-nine.vercel.app if not set)
+STUDIO_STORE_API_URL=https://framify-nine.vercel.app
+
+# Templates Store Feature Flag
+# Set to 'true' to enable the templates store page and API routes
+# Keep as 'false' or unset to hide templates until ready
+NEXT_PUBLIC_ENABLE_TEMPLATES_STORE=false
+```
+
+3. Run the development server:
 ```bash
 yarn run dev
 ```
 
-3. Open [http://localhost:3000](http://localhost:3000) to see the site
+4. Open [http://localhost:3000](http://localhost:3000) to see the site
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
