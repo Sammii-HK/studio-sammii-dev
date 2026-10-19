@@ -28,7 +28,7 @@ export default function Header() {
           <Link href="/" className="text-xl font-semibold text-black dark:text-white">
             Studio Sammii
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
@@ -46,8 +46,7 @@ export default function Header() {
             <Button href="/contact" variant="primary" className="hidden sm:inline-flex">
               Work with me
             </Button>
-            
-            {/* Mobile menu button */}
+
             <button
               className="md:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -64,7 +63,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-neutral-100 dark:border-neutral-800">
             <nav className="space-y-4">

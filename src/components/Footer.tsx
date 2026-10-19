@@ -27,7 +27,7 @@ export default function Footer() {
                 Studio Sammii
               </Link>
             </div>
-            
+
             <nav className="flex flex-wrap gap-6 md:gap-8 mb-6 md:mb-0">
               {navigation.map((item) => (
                 <Link
@@ -39,7 +39,7 @@ export default function Footer() {
                 </Link>
               ))}
             </nav>
-            
+
             <div className="flex gap-6">
               {social.map((item) => (
                 <Link
@@ -52,7 +52,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          
+
           <div className="mt-8 pt-8 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row md:items-center md:justify-between text-sm text-neutral-500 dark:text-neutral-400">
             <p>&copy; 2025 Studio Sammii. All rights reserved.</p>
             <Link href="/privacy" className="mt-2 md:mt-0 hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors">

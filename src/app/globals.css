@@ -5,7 +5,6 @@
   --foreground: #171717;
 }
 
-/* System preference fallback */
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
     --background: #0a0a0a;
@@ -13,13 +12,11 @@
   }
 }
 
-/* Explicit dark mode */
 :root.dark {
   --background: #0a0a0a;
   --foreground: #ededed;
 }
 
-/* Explicit light mode (overrides system preference) */
 :root.light {
   --background: #ffffff;
   --foreground: #171717;
@@ -36,18 +33,15 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Focus styles */
 :focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-/* Selection styles */
 ::selection {
   background-color: #000;
   color: #fff;

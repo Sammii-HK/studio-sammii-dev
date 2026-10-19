@@ -3,7 +3,12 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, company, budget, message } = body;
+    const { name, email, company, budget, message, website } = body;
+
+    // Honeypot check
+    if (website) {
+      return NextResponse.json({ message: "Thank you for your message! I'll get back to you within 24 hours." }, { status: 200 });
+    }
 
     // Basic validation
     if (!name || !email || !message) {
@@ -13,7 +18,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
@@ -22,23 +26,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Here you would typically:
-    // 1. Send an email notification
-    // 2. Save to a database
-    // 3. Send to a service like Notion, Airtable, etc.
-    
-    // For now, just log the submission
-    console.log('Contact form submission:', {
-      name,
-      email,
-      company,
-      budget,
-      message,
-      timestamp: new Date().toISOString()
+    // Push notification
+    await fetch("https://api.pushover.net/1/messages.json", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token: process.env.PUSHOVER_API_TOKEN,
+        user: process.env.PUSHOVER_USER_KEY,
+        title: `New enquiry from ${name}`,
+        message: `${email}${company ? ` — ${company}` : ""}${budget ? ` (${budget})` : ""}\n\n${message}`,
+        priority: 0,
+      }),
     });
 
     return NextResponse.json(
-      { message: 'Thank you for your message! I&apos;ll get back to you within 24 hours.' },
+      { message: "Thank you for your message! I'll get back to you within 24 hours." },
       { status: 200 }
     );
   } catch (error) {

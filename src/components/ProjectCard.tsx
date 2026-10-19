@@ -17,9 +17,9 @@ export default function ProjectCard({ title, goal, impact, image, role, githubUr
   return (
     <article className="overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors group bg-white dark:bg-neutral-900">
       <div className="relative h-56 bg-neutral-100 dark:bg-neutral-800">
-        <Image 
-          src={image} 
-          alt={title} 
+        <Image
+          src={image}
+          alt={title}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
@@ -48,10 +48,10 @@ export default function ProjectCard({ title, goal, impact, image, role, githubUr
               className="text-xs text-neutral-500 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors inline-flex items-center gap-1"
             >
               {linkLabel}
-              <svg 
-                className="w-3 h-3" 
-                fill="none" 
-                stroke="currentColor" 
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
                 viewBox="0 0 24 24"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

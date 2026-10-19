@@ -5,13 +5,13 @@ const ENABLE_TEMPLATES_STORE = process.env.NEXT_PUBLIC_ENABLE_TEMPLATES_STORE ==
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   // Return "not available" if templates store is not enabled
   if (!ENABLE_TEMPLATES_STORE) {
     return NextResponse.json(
       { error: 'Templates store is not available' },
-      { 
+      {
         status: 503,
         headers: {
           'Access-Control-Allow-Origin': '*',
@@ -22,7 +22,7 @@ export async function GET(
   }
 
   try {
-    const { id } = params;
+    const { id } = await params;
     
     if (!id) {
       return NextResponse.json(

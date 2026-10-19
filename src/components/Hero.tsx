@@ -4,7 +4,7 @@ import { siteContent } from "@/lib/content";
 
 export default function Hero() {
   const { hero } = siteContent;
-  
+
   return (
     <section className="border-b border-neutral-100 dark:border-neutral-800">
       <Container>

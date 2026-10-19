@@ -8,8 +8,8 @@ type ServiceCardProps = {
 
 export default function ServiceCard({ title, summary, href }: ServiceCardProps) {
   return (
-    <Link 
-      href={href} 
+    <Link
+      href={href}
       className="block rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 hover:bg-neutral-50 dark:hover:bg-neutral-900 hover:border-neutral-300 dark:hover:border-neutral-700 transition-colors group bg-white dark:bg-neutral-900"
     >
       <h3 className="text-xl font-medium text-black dark:text-white mb-3">
