@@ -4,7 +4,7 @@ import TemplateCard from "@/components/TemplateCard";
 import { fetchTemplates } from "@/lib/templates";
 
 export const metadata = {
-  title: "Framer Templates — Studio Sammii",
+  title: "Framer Templates | Studio Sammii",
   description: "Browse our collection of premium Framer templates. Beautiful, modern designs ready to use in your projects.",
 };
 

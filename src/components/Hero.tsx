@@ -9,7 +9,11 @@ export default function Hero() {
     <section className="border-b border-neutral-100 dark:border-neutral-800">
       <Container>
         <div className="py-20 md:py-28">
-          <h1 className="text-4xl font-semibold tracking-tight md:text-6xl leading-tight dark:text-white">
+          <p className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400">
+            <span className="w-2 h-2 rounded-full bg-emerald-500" aria-hidden="true" />
+            {hero.eyebrow}
+          </p>
+          <h1 className="text-4xl font-semibold tracking-tight md:text-6xl leading-tight dark:text-white max-w-4xl">
             {hero.title}
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">

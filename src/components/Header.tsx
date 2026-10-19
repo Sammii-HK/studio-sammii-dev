@@ -12,7 +12,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Work", href: "/work" },
-  { name: "SAAS", href: "/saas" },
+  { name: "App Review Rescue", href: "/app-review-rescue" },
   ...(ENABLE_TEMPLATES_STORE ? [{ name: "Templates", href: "/templates" }] : []),
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
@@ -29,7 +29,7 @@ export default function Header() {
             Studio Sammii
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -48,9 +48,10 @@ export default function Header() {
             </Button>
 
             <button
-              className="md:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
+              className="lg:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {mobileMenuOpen ? (
@@ -64,7 +65,7 @@ export default function Header() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-neutral-100 dark:border-neutral-800">
+          <div className="lg:hidden py-4 border-t border-neutral-100 dark:border-neutral-800">
             <nav className="space-y-4">
               {navigation.map((item) => (
                 <Link

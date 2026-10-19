@@ -1,78 +1,84 @@
+import Link from "next/link";
 import Hero from "@/components/Hero";
 import Container from "@/components/Container";
 import Section from "@/components/Section";
 import ServiceCard from "@/components/ServiceCard";
-import ProjectCard from "@/components/ProjectCard";
-import SAASProductCard from "@/components/SAASProductCard";
+import CaseStudyCard from "@/components/CaseStudyCard";
 import Button from "@/components/Button";
 import { siteContent } from "@/lib/content";
-import { fetchGitHubRepos, formatUpdatedDate, fetchProjectImages } from "@/lib/github";
+import { caseStudies } from "@/lib/case-studies";
 
 export const metadata = {
-  title: "Studio Sammii — Design engineer for products with clarity and soul",
-  description: "I help founders, studios, and creatives bring products to life. Design systems, product UI, and front-end in React and Next.js.",
+  title: siteContent.meta.title,
+  description: siteContent.meta.description,
 };
 
-export default async function Home() {
-  const { intro, services, projects, trust, cta, saasProductNames } = siteContent;
-  const allRepos = await fetchGitHubRepos();
-  const saasRepos = allRepos.filter((repo) => saasProductNames.includes(repo.name));
-  
-  // Create a map of repo names to their homepage URLs for projects
-  const repoHomepages = new Map<string, string | null>();
-  allRepos.forEach((repo) => {
-    repoHomepages.set(repo.name.toLowerCase(), repo.homepage);
-  });
-  
-  // Get repo names from projects
-  const repoNames = projects
-    .map((project) => project.githubUrl?.split('/').pop() || '')
-    .filter((name) => name.length > 0);
-  
-  // Fetch README images for all projects
-  const projectImages = await fetchProjectImages(repoNames);
-  
-  // Enhance projects with homepage links and images from GitHub
-  const projectsWithHomepages = projects.map((project) => {
-    const repoName = project.githubUrl?.split('/').pop()?.toLowerCase() || '';
-    const homepage = repoHomepages.get(repoName) || null;
-    const imageUrl = projectImages.get(repoName) || project.image;
-    return {
-      ...project,
-      homepage,
-      image: imageUrl,
-    };
-  });
+export default function Home() {
+  const { intro, services, process, availability, trust, cta, contact } = siteContent;
+  const featured = caseStudies.filter((study) => study.featured);
 
   return (
     <>
       <Hero />
-      
-      {/* Intro Section */}
+
       <Section>
         <Container>
-          <div className="max-w-3xl">
-            <p className="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
-              {intro.text}
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-2">
+              <p className="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {intro.text}
+              </p>
+            </div>
+            <aside className="rounded-2xl border border-neutral-200 dark:border-neutral-800 p-6 bg-white dark:bg-neutral-900 h-fit">
+              <h2 className="text-sm font-semibold text-black dark:text-white mb-3">Availability</h2>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">{availability.line}</p>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">{availability.rate}</p>
+              <a
+                href={`mailto:${contact.email}`}
+                className="text-sm font-medium text-black dark:text-white underline underline-offset-4 hover:no-underline"
+              >
+                {contact.email}
+              </a>
+            </aside>
           </div>
         </Container>
       </Section>
 
-      {/* Services Section */}
       <Section className="bg-neutral-50 dark:bg-neutral-950">
+        <Container>
+          <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-semibold mb-4 dark:text-white">Selected work</h2>
+              <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl">
+                Products I&apos;ve designed, built and shipped myself, from App Store apps to the systems that run them.
+              </p>
+            </div>
+            <Link href="/work" className="text-sm font-medium text-black dark:text-white underline underline-offset-4 hover:no-underline">
+              All case studies
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featured.map((study) => (
+              <CaseStudyCard key={study.slug} study={study} />
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <Section>
         <Container>
           <div className="mb-12">
             <h2 className="text-3xl font-semibold mb-4 dark:text-white">Services</h2>
             <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl">
-              Focused on outcomes that matter. From design systems to production-ready code.
+              Mostly contract roles inside product teams, plus a few fixed-scope offers.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {services.map((service, index) => (
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {services.map((service) => (
               <ServiceCard
-                key={index}
+                key={service.title}
                 title={service.title}
                 summary={service.summary}
                 href={service.href}
@@ -82,72 +88,26 @@ export default async function Home() {
         </Container>
       </Section>
 
-      {/* Work Section */}
-      <Section>
-        <Container>
-          <div className="mb-12">
-            <h2 className="text-3xl font-semibold mb-4 dark:text-white">Selected work</h2>
-            <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl">
-              A few projects that show how I blend design and engineering to create products with clarity and soul.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {projectsWithHomepages.map((project, index) => (
-              <ProjectCard
-                key={index}
-                title={project.title}
-                goal={project.goal}
-                impact={project.impact}
-                image={project.image}
-                role={project.role}
-                githubUrl={project.githubUrl}
-                homepage={project.homepage}
-              />
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* SAAS Products Section */}
       <Section className="bg-neutral-50 dark:bg-neutral-950">
         <Container>
-          <div className="mb-12">
-            <h2 className="text-3xl font-semibold mb-4 dark:text-white">SAAS Products</h2>
-            <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl">
-              Software-as-a-service products I&apos;ve built and launched. Each product solves real problems with clean interfaces and thoughtful engineering.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {saasRepos.slice(0, 6).map((repo, index) => (
-              <SAASProductCard
-                key={index}
-                name={repo.name}
-                description={repo.description}
-                githubUrl={repo.githubUrl}
-                homepage={repo.homepage}
-                language={repo.language}
-                updated={formatUpdatedDate(repo.updatedAt)}
-                isPublic={repo.isPublic}
-              />
+          <h2 className="text-3xl font-semibold mb-10 dark:text-white">How a contract starts</h2>
+          <ol className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {process.map((step, index) => (
+              <li key={step.title} className="rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-6">
+                <span className="text-sm font-mono text-neutral-400">0{index + 1}</span>
+                <h3 className="font-semibold text-black dark:text-white mt-2 mb-2">{step.title}</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">{step.text}</p>
+              </li>
             ))}
-          </div>
-          
-          <div className="text-center">
-            <Button href="/saas" variant="ghost">
-              View all SAAS products
-            </Button>
-          </div>
+          </ol>
         </Container>
       </Section>
 
-      {/* Trust Section */}
       <Section>
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            {trust.map((item, index) => (
-              <div key={index} className="text-neutral-600 dark:text-neutral-400">
+            {trust.map((item) => (
+              <div key={item} className="text-neutral-600 dark:text-neutral-400">
                 {item}
               </div>
             ))}
@@ -155,16 +115,21 @@ export default async function Home() {
         </Container>
       </Section>
 
-      {/* CTA Section */}
-      <Section>
+      <Section className="border-t border-neutral-100 dark:border-neutral-800">
         <Container>
           <div className="text-center max-w-2xl mx-auto">
-            <h2 className="text-3xl font-semibold mb-6">
+            <h2 className="text-3xl font-semibold mb-4 dark:text-white">
               {cta.heading}
             </h2>
-            <Button href="/contact" variant="primary">
-              {cta.button}
-            </Button>
+            <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">{cta.text}</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button href="/contact?topic=contract" variant="primary">
+                {cta.button}
+              </Button>
+              <Button href={`mailto:${contact.email}`} variant="ghost">
+                Email {contact.email}
+              </Button>
+            </div>
           </div>
         </Container>
       </Section>

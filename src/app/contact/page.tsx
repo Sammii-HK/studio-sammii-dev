@@ -4,44 +4,45 @@ import ContactForm from "@/components/ContactForm";
 import { siteContent } from "@/lib/content";
 
 export const metadata = {
-  title: "Contact — hire.sammii.dev",
-  description: "Looking to improve your product or launch something new. Send me a short note. I reply within 24 hours.",
+  title: "Contact | Studio Sammii",
+  description: "Hiring a senior design or product engineer on contract, or stuck in App Store review? Send a short note. I reply within one working day.",
 };
 
-export default function ContactPage({
+export default async function ContactPage({
   searchParams,
 }: {
-  searchParams: { deposit?: string };
+  searchParams: Promise<{ deposit?: string; topic?: string }>;
 }) {
-  const { contact } = siteContent;
+  const { contact, availability } = siteContent;
+  const { deposit, topic } = await searchParams;
 
   return (
     <>
       <Section>
         <Container>
           <div className="max-w-3xl">
-            <h1 className="text-4xl font-semibold tracking-tight mb-6">
+            <h1 className="text-4xl font-semibold tracking-tight mb-6 dark:text-white">
               {contact.title}
             </h1>
-            <p className="text-lg text-neutral-600 leading-relaxed mb-8">
+            <p className="text-lg text-neutral-600 dark:text-neutral-400 leading-relaxed mb-8">
               {contact.description}
             </p>
           </div>
         </Container>
       </Section>
 
-      {searchParams.deposit === "success" && (
+      {deposit === "success" && (
         <Section>
           <Container>
             <div className="p-6 bg-green-50 border border-green-200 rounded-xl text-green-800 max-w-2xl">
-              <p className="font-medium mb-1">Deposit received &mdash; you&apos;re booked in.</p>
+              <p className="font-medium mb-1">Deposit received. You&apos;re booked in.</p>
               <p className="text-sm text-green-700">I&apos;ll be in touch shortly to confirm your start date and next steps.</p>
             </div>
           </Container>
         </Section>
       )}
 
-      {searchParams.deposit === "cancelled" && (
+      {deposit === "cancelled" && (
         <Section>
           <Container>
             <div className="p-6 bg-neutral-50 border border-neutral-200 rounded-xl text-neutral-700 max-w-2xl">
@@ -52,43 +53,48 @@ export default function ContactPage({
         </Section>
       )}
 
-      <Section>
+      <Section className="pt-0 md:pt-0">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div>
-              <ContactForm />
+              <ContactForm initialTopic={topic} />
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold mb-6">Other ways to reach me</h2>
+              <h2 className="text-xl font-semibold mb-6 dark:text-white">Other ways to reach me</h2>
 
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-medium text-black mb-2">Email</h3>
+                  <h3 className="font-medium text-black dark:text-white mb-2">Email</h3>
                   <a
                     href={`mailto:${contact.email}`}
-                    className="text-neutral-600 hover:text-black transition-colors"
+                    className="text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white transition-colors underline underline-offset-4"
                   >
                     {contact.email}
                   </a>
                 </div>
 
                 <div>
-                  <h3 className="font-medium text-black mb-2">Response time</h3>
-                  <p className="text-neutral-600">Usually within 24 hours</p>
+                  <h3 className="font-medium text-black dark:text-white mb-2">Availability</h3>
+                  <p className="text-neutral-600 dark:text-neutral-400">{availability.line}</p>
                 </div>
 
                 <div>
-                  <h3 className="font-medium text-black mb-2">Time zone</h3>
-                  <p className="text-neutral-600">WITA (UTC+8)</p>
+                  <h3 className="font-medium text-black dark:text-white mb-2">Response time</h3>
+                  <p className="text-neutral-600 dark:text-neutral-400">Within one working day</p>
+                </div>
+
+                <div>
+                  <h3 className="font-medium text-black dark:text-white mb-2">Time zone</h3>
+                  <p className="text-neutral-600 dark:text-neutral-400">London (GMT/BST, Europe/London)</p>
                 </div>
               </div>
 
-              <div className="mt-8 p-6 bg-neutral-50 rounded-xl">
-                <h3 className="font-medium text-black mb-2">Before you reach out</h3>
-                <p className="text-sm text-neutral-600">
-                  I work best with founders and teams who value craft, clarity, and honest collaboration.
-                  If that sounds like you, I&apos;d love to hear about your project.
+              <div className="mt-8 p-6 bg-neutral-50 dark:bg-neutral-900 rounded-xl">
+                <h3 className="font-medium text-black dark:text-white mb-2">Useful to include</h3>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                  For contract roles: start date, length, day rate or band, IR35 status and how many office days.
+                  For App Review Rescue: the guideline number and the full rejection message from App Store Connect.
                 </p>
               </div>
             </div>

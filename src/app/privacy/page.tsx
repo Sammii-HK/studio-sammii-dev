@@ -2,7 +2,7 @@ import Container from "@/components/Container";
 import Section from "@/components/Section";
 
 export const metadata = {
-  title: "Privacy Policy — Studio Sammii",
+  title: "Privacy Policy | Studio Sammii",
   description: "Privacy policy for Studio Sammii website.",
 };
 

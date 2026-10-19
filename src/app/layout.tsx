@@ -13,6 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteContent.meta.url),
   title: siteContent.meta.title,
   description: siteContent.meta.description,
   openGraph: {
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
         height: 630,
       },
     ],
-    locale: "en_US",
+    locale: "en_GB",
     type: "website",
   },
   twitter: {
@@ -44,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en-GB" suppressHydrationWarning>
       <head>
         <Script
           id="theme-init"

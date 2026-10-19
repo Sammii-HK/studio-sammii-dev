@@ -5,7 +5,7 @@ import { siteContent } from "@/lib/content";
 import { fetchGitHubRepos, formatUpdatedDate } from "@/lib/github";
 
 export const metadata = {
-  title: "SAAS Products — Studio Sammii",
+  title: "SAAS Products | Studio Sammii",
   description: "A collection of software-as-a-service products I've built and launched.",
 };
 
