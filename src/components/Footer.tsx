@@ -13,7 +13,7 @@ const navigation = [
 
 const social = [
   { name: "LinkedIn", href: "https://www.linkedin.com/in/sammii" },
-  { name: "X", href: "https://x.com/sammiihk" },
+  { name: "X", href: "https://x.com/technicalyblond" },
   { name: "GitHub", href: "https://github.com/Sammii-HK" },
   { name: "sammii.dev", href: "https://sammii.dev" },
 ];

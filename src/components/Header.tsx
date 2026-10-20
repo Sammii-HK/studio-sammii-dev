@@ -43,9 +43,12 @@ export default function Header() {
 
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            <Button href="/contact" variant="primary" className="hidden sm:inline-flex">
-              Work with me
-            </Button>
+            {/* Wrapper carries the breakpoint; Button's own inline-flex would override "hidden" */}
+            <div className="hidden sm:block">
+              <Button href="/contact" variant="primary">
+                Work with me
+              </Button>
+            </div>
 
             <button
               className="lg:hidden p-2 text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white"
