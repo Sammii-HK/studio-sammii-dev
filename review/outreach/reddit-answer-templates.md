@@ -56,7 +56,7 @@ Best for: camera/photos/mic/notification onboarding screens.
 >
 > What I changed on mine (PostReady): same screen, button now says "Continue", and it goes straight into the real system prompt. Also make sure:
 >
-> - there's a way to skip ("Not now"),
+> - it's the only button on that screen: Apple's HIG says no close, cancel or "Not now" before the system alert, since the alert itself lets people decline,
 > - the app still works if they decline, with a fallback where you can,
 > - each purpose string says the specific reason, not "we need access to your camera".
 >

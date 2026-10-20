@@ -30,7 +30,7 @@ Character counts are under 280 for all of them (checked).
 
 5. A custom permission screen with an "Allow" button reads as a fake system prompt, and that's a 5.1.1(iv) rejection.
 
-   Call it "Continue", add "Not now", and make sure the app still works when someone says no.
+   Call it "Continue", keep it the only button, and make sure the app still works when someone declines the real prompt.
 
 6. 4.3(b) is a category verdict. I reordered an astrology app's screens and changed its category, and got the same boilerplate back five times.
 

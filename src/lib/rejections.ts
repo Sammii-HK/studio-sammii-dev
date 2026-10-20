@@ -367,15 +367,15 @@ export const rejections: RejectionEntry[] = [
     area: "Legal",
     keywords: ["permission", "pre-permission", "allow button", "custom prompt", "priming", "camera", "photos", "microphone", "notifications", "location", "access", "privacy", "legal"],
     whatItMeans:
-      "Apps must respect permission choices and not nudge people into granting access. A custom screen shown before the system prompt is fine, but if its button says \"Allow\" it looks like the real permission dialog, and Apple treats that as pushing consent.",
+      "Apps must respect permission choices and not nudge people into granting access. A custom screen shown before the system prompt is fine, but if its button says \"Allow\" it looks like the real permission dialog, and Apple treats that as pushing consent. Apple's Human Interface Guidelines say that screen should have a single button titled something like \"Continue\" or \"Next\", with no option to close or cancel before the system alert.",
     usualCauses: [
       "Primer screen button labelled \"Allow\", \"Enable\" or \"Grant access\"",
-      "No way to skip the primer or continue without the permission",
+      "A second button such as \"Not now\", or a close icon, that dismisses the screen before the system alert appears",
       "Feature blocked entirely when the user declines, with no alternative"
     ],
     fixChecklist: [
       "Relabel the primer button to something neutral such as \"Continue\" or \"Next\"",
-      "Add a clear way to skip, such as \"Not now\"",
+      "Keep it to that one button: no \"Not now\", close or cancel before the system alert (the alert itself lets people decline)",
       "Let the app keep working when access is declined, with a fallback where possible",
       "Make each purpose string say exactly why you need the access"
     ],
